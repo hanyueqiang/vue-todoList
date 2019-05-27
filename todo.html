@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .app1 {
+      margin-left: 15px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<script src="./vue.js"></script>
+<body>
+  <div id="app" :class="{app1: isApp}">
+    <h3>{{message}}</h3>
+    <input type="text" v-model="inputValue" @keyup.enter="addHandle">
+    <button @click="addHandle">添加</button>
+    <ul>
+
+      <li v-for="(item, index) in items" :style="liStyleObject">
+        <span>{{index + 1}}.</span>{{item}}
+        <a href="javascript:void(0)" @click="delHandle(index)"
+          :style="{ marginLeft: 16 + 'px', textDecoration: 'none' }">删除</a>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        isApp: true,
+        message: 'vue-todoList',
+        items: [],
+        inputValue: '',
+        liStyleObject: {
+          listStyle: 'none'
+        }
+      },
+      methods: {
+        addHandle: function () {
+          if (this.inputValue) {
+            this.items.push(this.inputValue);
+            this.inputValue = '';
+          }
+        },
+        delHandle: function (index) {
+          this.items.splice(index, 1);
+        }
+      },
+    })
+  </script>
+</body>
+</html>
