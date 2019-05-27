@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="icon" href="./logo.png" type="image/png">
+  <title>vue-todoList</title>
+
   <style>
     .app1 {
       margin-left: 15px;
@@ -14,23 +16,46 @@
   </style>
 </head>
 <script src="./vue.js"></script>
+
 <body>
   <div id="app" :class="{app1: isApp}">
     <h3>{{message}}</h3>
     <input type="text" v-model="inputValue" @keyup.enter="addHandle">
     <button @click="addHandle">添加</button>
     <ul>
-
-      <li v-for="(item, index) in items" :style="liStyleObject">
+      <!-- <li v-for="(item, index) in items" :style="liStyleObject">
         <span>{{index + 1}}.</span>{{item}}
         <a href="javascript:void(0)" @click="delHandle(index)"
           :style="{ marginLeft: 16 + 'px', textDecoration: 'none' }">删除</a>
-      </li>
+      </li> -->
+      <todo-item v-for="(item, index) in items" :key="index" :item="item" :index="index" :li-obj="liStyleObject" @delete="delHandle">
+      </todo-item>
     </ul>
   </div>
 
   <script>
+    var TodoItem = {
+      props: ['item', 'index', 'liObj'],
+      data: function () {
+        return {
+          aStyle: {
+            marginLeft: '16px',
+            textDecoration: 'none'
+          }
+        }
+      },
+      template: '<li :style="liObj">{{item}}' +
+        '<a href="javascript:void(0)" @click="delHandle(index)" :style="aStyle">删除</a></li>',
+      methods: {
+        delHandle: function (index) {
+          this.$emit('delete', index)
+        }
+      }
+    }
     var app = new Vue({
+      components: {
+        'todo-item': TodoItem
+      },
       el: '#app',
       data: {
         isApp: true,
@@ -38,7 +63,8 @@
         items: [],
         inputValue: '',
         liStyleObject: {
-          listStyle: 'none'
+          listStyle: 'none',
+          margin: '6px'
         }
       },
       methods: {
@@ -55,4 +81,5 @@
     })
   </script>
 </body>
+
 </html>
