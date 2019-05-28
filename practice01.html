@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="./vue.js"></script>
+<body>
+    <div id="app">
+        <div>{{fullName}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                first: 'hello',
+                last: 'world'
+            },
+            //计算属性
+            computed: {
+                fullName: function() {
+                    return this.first + ' ' + this.last;
+                }
+            },
+            watch: {
+                first: function() {
+                
+                }
+            }
+        })
+    </script>
+</body>
+</html>
