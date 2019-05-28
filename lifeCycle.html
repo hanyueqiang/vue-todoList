@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-生命周期函数</title>
+</head>
+<script src="./vue.js"></script>
+<body>
+    <div id="app">
+        {{message}}
+        <div v-text="news"></div>
+        <div v-html="news"></div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello World',
+            news: '<h4>你好世界</h4>'
+        },
+        beforeCreate() {
+            console.log('beforeCreate', 'vue实例初始化')
+        },
+        created() {
+            console.log('created', '处理外部注入，数据绑定初始化')
+        },
+        beforeMount() {
+            console.log('beforeMount','页面渲染前')
+        },
+        mounted() {
+            console.log('mounted','页面渲染后')
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate', '数据更新渲染前')
+        },
+        updated() {
+            console.log('updated', '数据更新渲染后')
+        },
+        beforeDestroy() {
+            console.log('beforeDestory','组件销毁前')
+        },
+        destroyed() {
+            console.log('destroyed','组件销毁后')
+        }
+    })
+</script>
+</html>
