@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active {
+            color: blue;
+        }
+        .inline {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<script src="./vue.js"></script>
+<body>
+    <div id="app">
+        <div :class="{active: isActive}" @click="clickHndle">{{fullName}}</div>
+        <div :class="[actived, lined]">{{concatName}}</div>
+        <div :style="styleObj">{{setterVal}}</div>
+        <div v-if="show">你好</div>
+        <div v-else>bye!</div>
+        <div v-show="show">你好</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                first: 'hello',
+                last: 'world',
+                concatName: 'hello world',
+                isActive: false,
+                actived: '',
+                lined: 'inline',
+                styleObj: {
+                    fontSize: '18px',
+                    color: 'yellow'
+                },
+                show: false
+
+            },
+            methods: {
+                clickHndle: function() {
+                    this.isActive = !this.isActive;
+                }
+            },
+            //计算属性
+            computed: {
+                fullName: function() {
+                    return this.first + ' ' + this.last;
+                },
+                setterVal: {
+                    get: function() {
+                        return this.first + ' ' + this.last;
+                    },
+                    set: function(value) {
+                        var arr = value.split(' ');
+                        this.first = arr[0];
+                        this.last = arr[1];
+                    }
+                }
+            },
+            watch: {
+                first: function() {
+                    this.concatName = this.first + ' ' + this.last;
+                },
+                last: function() {
+                    this.concatName = this.first + ' ' + this.last;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
