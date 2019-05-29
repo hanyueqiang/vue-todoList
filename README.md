@@ -13,7 +13,7 @@
 - [√] 生命周期函数
 - [√] 模版语法v-text,v-html区别
 
-### practice01.html实现功能
+### practice02.html实现功能
 - [√] 计算属性computed用法
 - [√] 侦听器watch用法
 - [√] computed中setter、getter用法
