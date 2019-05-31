@@ -19,3 +19,9 @@
 - [√] computed中setter、getter用法
 - [√] class样式绑定(:class,:style)
 - [√] 条件渲染v-if、v-else、v-show
+
+### practice03.html实现功能
+- [√] 列表渲染
+- [√] 数组的变异方法，改变数据引用，数组set方法
+- [√] 对象改变数据引用，对象set方法
+- [√] `<template></template>`模版占位符

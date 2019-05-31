@@ -23,6 +23,9 @@
             <button @click="objDataChange">改变数据引用</button>
             <button @click="setObjChange">set方法</button>
         </div>
+        <div class="dell">
+            <template>{{name}}</template>
+        </div>
     </div>
     <script>
         var vm = new Vue({
@@ -43,7 +46,8 @@
                     name: 'han',
                     age: 28,
                     gender: 'male'
-                }
+                },
+                name: 'hello'
             },
             methods: {
                 arrFunc: function () {
