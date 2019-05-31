@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <div v-for="(item, index) in list" :key="index">{{item.name}}</div>
+            <button @click="arrFunc">数组变异方法</button>
+            <button @click="changeData">改变数据引用</button>
+            <button @click="setArrChange">数组set方法</button>
+        </div>
+        <br />
+        <div>
+            <div v-for="item of listObj">{{item}}</div>
+            <button @click="objDataChange">改变数据引用</button>
+            <button @click="setObjChange">set方法</button>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {
+                        id: 1,
+                        name: '张三'
+                    },
+                    {
+                        id: 2,
+                        name: '李四'
+                    }
+
+                ],
+                listObj: {
+                    name: 'han',
+                    age: 28,
+                    gender: 'male'
+                }
+            },
+            methods: {
+                arrFunc: function () {
+                    //pop,shift,unshift,splice
+                    this.list.push({ id: 3, name: '王五' });
+                },
+                changeData: function () {
+                    this.list = [
+                        {
+                            id: 1,
+                            name: '张三'
+                        },
+                        {
+                            id: 2,
+                            name: '李四'
+                        },
+                        {
+                            id: 4,
+                            name: '王静'
+                        }
+                    ]
+                },
+                setArrChange: function() {
+                    vm.$set(vm.list, 1, {id: 8, name: '网二'});
+                },
+                objDataChange: function () {
+                    this.listObj = {
+                        name: 'han',
+                        age: 28,
+                        gender: 'male',
+                        address: 'beijing'
+                    }
+                },
+                setObjChange: function() {
+                    vm.$set(vm.listObj, 'love', 'date');
+                    //Vue.set(vm.listObj, 'love', 'date')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
