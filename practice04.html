@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <row :age="age" @change="changson" @click.native="handle"></row>
+    </div>
+    <script>
+        Vue.component('row', {
+            props: {
+                age: {
+                    type: Number,
+                    required: true,
+                    default: '15'
+                }
+
+            },
+            data: function() {
+                return {
+                    content: 'add'
+                }
+            },
+            template: '<div @click="handleclick" >{{content + " " + age}}</div>',
+            methods: {
+                handleclick: function() {
+                    this.$emit('change', 'hello');
+                },
+                
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                age: 18
+            },
+            methods:{
+                changson: function(val) {
+                    alert(val)
+                },
+                handle: function() {
+                    alert('hi')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
