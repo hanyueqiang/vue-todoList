@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <p slot="pp">hello lili</p>
+            <h3 slot="h3">我是h3</h3>
+        </child>
+        <child-content>
+            <!-- 作用域插槽格式固定 -->
+            <template slot-scope="props">
+                <li>{{props.item}}</li>
+            </template>
+        </child-content>
+    </div>
+    <script>
+        Vue.component('child', {
+            template: `<div>
+                        hello Mr han
+                        <slot name="pp"></slot>
+                        <slot name="h3"></slot>
+                    </div>`
+        });
+        Vue.component('child-content', {
+            template: `
+                    <ul>
+                        <slot v-for="item of list" :item="item"></slot>
+                    </ul> 
+                `,
+            data: function () {
+                return {
+                    list: [
+                        1, 2, 3, 4, 5
+                    ]
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+
+        })
+    </script>
+</body>
+
+</html>
